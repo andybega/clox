@@ -5,6 +5,9 @@
 		}
 	],
 	"settings": {
-		"makefile.configureOnOpen": true
+		"makefile.configureOnOpen": true,
+		"files.associations": {
+			"debug.h": "c"
+		}
 	}
 }
