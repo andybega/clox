@@ -1,2 +1,3 @@
+// ./clox tests/ch17-expressions.clox
 // Should return -1
 -(1 + 1)/2
