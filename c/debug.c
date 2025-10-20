@@ -26,6 +26,14 @@ static int simpleInstruction(const char* name, int offset) {
     return offset + 1;
 }
 
+// For local variables, we can't lookup the name, so instead show the slot number
+static int byteInstruction(const char* name, Chunk* chunk,
+                           int offset) {
+    uint8_t slot = chunk->code[offset + 1];
+    printf("%-16s %4d\n", name, slot);
+    return offset + 2; 
+}
+
 int disassembleInstruction(Chunk* chunk, int offset) {
     printf("%04d ", offset);
     // If the current line is same as last, print bar not line number
@@ -49,6 +57,10 @@ int disassembleInstruction(Chunk* chunk, int offset) {
             return simpleInstruction("OP_FALSE", offset);
         case OP_POP:
             return simpleInstruction("OP_POP", offset);
+        case OP_GET_LOCAL:
+            return byteInstruction("OP_GET_LOCAL", chunk, offset);
+        case OP_SET_LOCAL:
+            return byteInstruction("OP_SET_LOCAL", chunk, offset);
         case OP_GET_GLOBAL:
             return constantInstruction("OP_GET_GLOBAL", chunk, offset);
         case OP_DEFINE_GLOBAL:
