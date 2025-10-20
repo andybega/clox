@@ -1,0 +1,7 @@
+// ./clox tests/ch21-globals.clox
+// value: beignets with cafe au lait
+var breakfast = "beignets";
+var beverage = "cafe au lait";
+breakfast = "beignets with " + beverage;
+
+print breakfast;
