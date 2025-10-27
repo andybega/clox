@@ -7,7 +7,21 @@
 	"settings": {
 		"makefile.configureOnOpen": true,
 		"files.associations": {
-			"debug.h": "c"
+			"debug.h": "c",
+			"__bit_reference": "c",
+			"__node_handle": "c",
+			"bitset": "c",
+			"deque": "c",
+			"limits": "c",
+			"locale": "c",
+			"optional": "c",
+			"ratio": "c",
+			"vector": "c",
+			"__hash_table": "c",
+			"array": "c",
+			"complex": "c",
+			"type_traits": "c",
+			"variant": "c"
 		}
 	}
 }
