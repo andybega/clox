@@ -1,0 +1,9 @@
+// Intentional error to show stack trace
+// ./clox tests/ch24-stack-trace.clox
+fun a() { b(); }
+fun b() { c(); }
+fun c() {
+    c("too", "many");
+}
+
+a();

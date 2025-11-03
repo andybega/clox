@@ -1,0 +1,6 @@
+// ./clox tests/ch24-print-function.clox
+fun areWeHavingItYet() {
+    print "Yes we are!";
+}
+
+print areWeHavingItYet;
