@@ -1,5 +1,5 @@
 // First test after implementing closures and upvalues
-// .clox tests/ch25-closures.clox
+// ./clox tests/ch25-closures.clox
 fun outer() {
     var x = "outside";
     fun inner() {
