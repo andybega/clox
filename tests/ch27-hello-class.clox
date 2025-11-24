@@ -1,0 +1,4 @@
+// First test after implementing classes
+// ./clox tests/ch27-hello-class.clox
+class Brioche {}
+print Brioche;

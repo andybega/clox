@@ -8,8 +8,8 @@
 #define DEBUG_PRINT_CODE
 //#define DEBUG_TRACE_EXECUTION  // Enable this to see trace output
 
-#define DEBUG_STRESS_GC // Enable this to stress test the garbage collector
-#define DEBUG_LOG_GC    // Enable this to see garbage collector logs
+//#define DEBUG_STRESS_GC // Enable this to stress test the garbage collector
+//#define DEBUG_LOG_GC    // Enable this to see garbage collector logs
 
 #define UINT8_COUNT (UINT8_MAX + 1)
 

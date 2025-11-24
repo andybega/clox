@@ -1,0 +1,4 @@
+// Second test, of class instances
+// ./clox tests/ch27-class-instance.clox
+class Brioche {}
+print Brioche();
