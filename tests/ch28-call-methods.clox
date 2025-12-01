@@ -1,0 +1,10 @@
+// Call methods (ch. 28.2)
+// ./clox tests/ch28-call-methods.clox
+class Scone {
+  topping(first, second) {
+    print "scone with " + first + " and " + second;
+  }
+}
+
+var scone = Scone();
+scone.topping("berries", "cream");
