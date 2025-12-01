@@ -53,7 +53,8 @@ typedef struct {
 
 typedef enum {
     TYPE_FUNCTION,  // regular function
-    TYPE_METHOD,    // initializer method (for classes)
+    TYPE_INITIALIZER, // initializer method (for classes)
+    TYPE_METHOD,    // regular method (for classes)
     TYPE_SCRIPT     // our pretend top-level "main" function
 } FunctionType;
 
@@ -169,7 +170,12 @@ static int emitJump(uint8_t instruction) {
 }
 
 static void emitReturn() {
-    emitByte(OP_NIL);
+    // For class initializers, always return "this", which is in slot 0
+    if (current->type == TYPE_INITIALIZER) {
+        emitBytes(OP_GET_LOCAL, 0);
+    } else {
+        emitByte(OP_NIL);
+    }
     emitByte(OP_RETURN);
 }
 
@@ -678,6 +684,12 @@ static void method() {
     uint8_t constant = identifierConstant(&parser.previous);
 
     FunctionType type = TYPE_METHOD;
+    // Special treatment for initializer methods
+    if (parser.previous.length == 4 &&
+        memcmp(parser.previous.start, "init", 4) == 0) {
+        type = TYPE_INITIALIZER;
+    }
+
     function(type);
     
     emitBytes(OP_METHOD, constant);
@@ -824,6 +836,10 @@ static void returnStatement() {
     if (match(TOKEN_SEMICOLON)) {
         emitReturn();
     } else {
+        if (current->type == TYPE_INITIALIZER) {
+            error("Can't return a value from an initializer.");
+        }
+
         expression();
         consume(TOKEN_SEMICOLON, "Expect ';' after return value.");
         emitByte(OP_RETURN);
