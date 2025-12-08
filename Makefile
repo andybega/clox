@@ -28,4 +28,18 @@ $(BUILD_DIR)/$(NAME)/%.o: $(SOURCE_DIR)/%.c $(HEADERS)
 	@ mkdir -p $(BUILD_DIR)/$(NAME)
 	@ $(CC) -c $(C_LANG) $(CFLAGS) -o $@ $<
 
+# Run all tests in the tests/ directory
+.PHONY: test
+test: $(NAME)
+	@ echo "Running tests..."
+	@ for test in tests/*.clox; do \
+		echo "Testing $$test..."; \
+		if [ "$$test" = "tests/ch24-stack-trace.clox" ]; then \
+			./$(NAME) $$test || echo "(Expected error in stack trace test)"; \
+		else \
+			./$(NAME) $$test || exit 1; \
+		fi; \
+	done
+	@ echo "All tests passed!"
+
 .PHONY: default

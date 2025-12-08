@@ -1,3 +1,3 @@
 // ./clox tests/ch19-strings.clox
 // value: string
-"st" + "ri" + "ng"
+"st" + "ri" + "ng";
