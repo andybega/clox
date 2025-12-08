@@ -744,6 +744,10 @@ static void classDeclaration() {
         consume(TOKEN_IDENTIFIER, "Expect superclass name.");
         variable(false);
 
+        if (identifiersEqual(&className, &parser.previous)) {
+            error("A class can't inherit from itself.");
+        }
+
         // Add reference to "super" in local scope
         beginScope();
         addLocal(syntheticToken("super"));
@@ -752,10 +756,6 @@ static void classDeclaration() {
         namedVariable(className, false);
         emitByte(OP_INHERIT);
         classCompiler.hasSuperclass = true;
-    }
-
-    if (identifiersEqual(&className, &parser.previous)) {
-        error("A class can't inherit from itself.");
     }
 
     namedVariable(className, false);
