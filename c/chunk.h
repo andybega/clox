@@ -36,6 +36,7 @@ typedef enum {
     OP_LOOP,
     OP_CALL,
     OP_INVOKE,  // Optimized for method calls
+    OP_SUPER_INVOKE,
     OP_CLOSURE,
     OP_CLOSE_UPVALUE,
     OP_RETURN,
