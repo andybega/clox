@@ -5,7 +5,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
+// This is an optimization that speeds up by 10%, but might not work on all 
+// platforms. 
 #define NAN_BOXING
+
+// Debugging flags
 #define DEBUG_PRINT_CODE
 //#define DEBUG_TRACE_EXECUTION  // Enable this to see trace output
 
