@@ -32,14 +32,18 @@ $(BUILD_DIR)/$(NAME)/%.o: $(SOURCE_DIR)/%.c $(HEADERS)
 .PHONY: test
 test: $(NAME)
 	@ echo "Running tests..."
-	@ for test in tests/*.clox; do \
+	@ start_time=$$(date +%s.%N); \
+	for test in tests/*.clox; do \
 		echo "Testing $$test..."; \
 		if [ "$$test" = "tests/ch24-stack-trace.clox" ]; then \
 			./$(NAME) $$test || echo "(Expected error in stack trace test)"; \
 		else \
 			./$(NAME) $$test || exit 1; \
 		fi; \
-	done
-	@ echo "All tests passed!"
+	done; \
+	end_time=$$(date +%s.%N); \
+	elapsed=$$(echo "$$end_time - $$start_time" | bc); \
+	echo "All tests passed!"; \
+	printf "Total time: %.3f seconds\n" $$elapsed
 
 .PHONY: default
